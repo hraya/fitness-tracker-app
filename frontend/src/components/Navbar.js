@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import clsx from 'clsx';
-import { AppBar, Toolbar, Button, IconButton,Typography, InputBase, Badge, MenuItem, Menu } from "@material-ui/core";
+import { AppBar, Toolbar, Button, IconButton,Typography, InputBase, Badge, MenuItem, Menu, Drawer, CssBaseline, ListItem, ListItemIcon, ListItemText, useTheme, Divider, List, withStyles } from "@material-ui/core";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import HomeIcon from '@material-ui/icons/Home';
+import EventNoteIcon from '@material-ui/icons/EventNote';
+import WorkoutIcon from '@material-ui/icons/FitnessCenter';
+import ProgressIcon from '@material-ui/icons/Notes';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex'
+  },
   grow: {
     flexGrow: 1
   },
@@ -31,6 +40,23 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(4)
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
   },
   title: {
     display: "none",
@@ -84,18 +110,62 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("md")]: {
       display: "none"
     }
-  }
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
 }));
 
-export default function NavBar() {
+ const NavBar = (props) => {
+  // const { classes } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [auth, setAuth] = useState(true);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const navList = [
+    {
+      title:"Home",
+      path: "home",
+      icon: <HomeIcon />
+    },
+    {
+      title:"Schedule",
+      path: "schedule",
+      icon: <EventNoteIcon />
+    },
+    {
+      title:"Workouts",
+      path: "workouts",
+      icon: <WorkoutIcon />
+    },
+    {
+      title:"Progress",
+      path: "progress",
+      icon: <ProgressIcon />
+    },
+  ]
 
+  const handleDrawerOpen = () => {
+    setOpen(!open)
+  }
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -178,7 +248,7 @@ export default function NavBar() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow, classes.root}>
       <AppBar position="fixed" className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}>
@@ -186,7 +256,8 @@ export default function NavBar() {
           {auth && (
             <IconButton
               edge="start"
-              className={classes.menuButton}
+              className={clsx(classes.menuButton, open && classes.hide)}
+              onClick={handleDrawerOpen}
               color="inherit"
               aria-label="open drawer"
             >
@@ -260,8 +331,33 @@ export default function NavBar() {
       </AppBar>
       {auth && renderMobileMenu}
       {auth && renderMenu}
+      <Drawer className={classes.drawer} varient="persistent" anchor="left" open={open} classes={{
+        paper: classes.drawerPaper
+      }}>
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerOpen}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {navList.map((item, i) => (
+            <ListItem button key={item.title} to={item.path} onClick={handleDrawerOpen}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.title} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <main className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}>
+        <div className={classes.drawerHeader}></div>
+      </main>
       <div>
       </div>
     </div>
   );
 }
+
+export default (NavBar);
