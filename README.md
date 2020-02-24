@@ -1,5 +1,5 @@
 # Accountabili-Buddy
-This will be an application where you and your friends can join together in your fitness goals and help hold each other accountable to a healthier lifestyle. You will be each other's _**Accountabili-Buddy**_.
+This will be an application where you can track your progress healthier lifestyle. The app will be your _**Accountabili-Buddy**_.
 
 #### Created leveraging the MERN Stack
 #### Coming soon mobile app IOS & Android
