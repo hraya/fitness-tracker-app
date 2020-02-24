@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   appBar: {
+    backgroundColor:"#800000",
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0,
   },
   drawerPaper: {
+    backgroundColor:'#F0FFF0',
     width: drawerWidth,
   },
   drawerHeader: {
@@ -130,7 +132,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
  const NavBar = (props) => {
-  // const { classes } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false)
@@ -348,6 +349,7 @@ const useStyles = makeStyles(theme => ({
             </ListItem>
           ))}
         </List>
+        <Divider />
       </Drawer>
       <main className={clsx(classes.content, {
           [classes.contentShift]: open,
