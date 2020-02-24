@@ -1,64 +1,84 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import clsx from 'clsx';
-import { AppBar, Toolbar, Button, IconButton,Typography, InputBase, Badge, MenuItem, Menu, Drawer, CssBaseline, ListItem, ListItemIcon, ListItemText, useTheme, Divider, List, withStyles } from "@material-ui/core";
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import clsx from "clsx";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  IconButton,
+  Typography,
+  InputBase,
+  Badge,
+  MenuItem,
+  Menu,
+  Drawer,
+  CssBaseline,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  useTheme,
+  Divider,
+  List,
+  withStyles
+} from "@material-ui/core";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import HomeIcon from '@material-ui/icons/Home';
-import EventNoteIcon from '@material-ui/icons/EventNote';
-import WorkoutIcon from '@material-ui/icons/FitnessCenter';
-import ProgressIcon from '@material-ui/icons/Notes';
+import HomeIcon from "@material-ui/icons/Home";
+import EventNoteIcon from "@material-ui/icons/EventNote";
+import WorkoutIcon from "@material-ui/icons/FitnessCenter";
+import ProgressIcon from "@material-ui/icons/Notes";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex'
+    display: "flex"
   },
   grow: {
     flexGrow: 1
   },
   appBar: {
-    backgroundColor:"#800000",
-    transition: theme.transitions.create(['margin', 'width'], {
+    backgroundColor: "#800000",
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   menuButton: {
     marginRight: theme.spacing(4)
   },
   hide: {
-    display: 'none',
+    display: "none"
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: 0
   },
   drawerPaper: {
-    backgroundColor:'#F0FFF0',
-    width: drawerWidth,
+    backgroundColor: "#F0FFF0",
+    width: drawerWidth
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     padding: theme.spacing(0, 1),
     // ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end"
   },
   title: {
     display: "none",
@@ -116,25 +136,25 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0,
-  },
+    marginLeft: 0
+  }
 }));
 
- const NavBar = (props) => {
+const NavBar = props => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [auth, setAuth] = useState(true);
@@ -143,30 +163,30 @@ const useStyles = makeStyles(theme => ({
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const navList = [
     {
-      title:"Home",
+      title: "Home",
       path: "home",
       icon: <HomeIcon />
     },
     {
-      title:"Schedule",
+      title: "Schedule",
       path: "schedule",
       icon: <EventNoteIcon />
     },
     {
-      title:"Workouts",
+      title: "Workouts",
       path: "workouts",
       icon: <WorkoutIcon />
     },
     {
-      title:"Progress",
+      title: "Progress",
       path: "progress",
       icon: <ProgressIcon />
-    },
-  ]
+    }
+  ];
 
   const handleDrawerOpen = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -249,10 +269,14 @@ const useStyles = makeStyles(theme => ({
   );
 
   return (
-    <div className={classes.grow, classes.root}>
-      <AppBar position="fixed" className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
+    <div className={(classes.grow, classes.root)}>
+    <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open
+        })}
+      >
         <Toolbar>
           {auth && (
             <IconButton
@@ -266,7 +290,7 @@ const useStyles = makeStyles(theme => ({
             </IconButton>
           )}
           <Typography className={classes.title} variant="h6" noWrap>
-          Accountabili-Buddy
+            Accountabili-Buddy
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -324,7 +348,9 @@ const useStyles = makeStyles(theme => ({
           )}
           {!auth && (
             <div>
-              <Button color="inherit" onClick={handleAuth}>Login</Button>
+              <Button color="inherit" onClick={handleAuth}>
+                Login
+              </Button>
               <Button color="inherit">Sign up</Button>
             </div>
           )}
@@ -332,18 +358,34 @@ const useStyles = makeStyles(theme => ({
       </AppBar>
       {auth && renderMobileMenu}
       {auth && renderMenu}
-      <Drawer className={classes.drawer} varient="persistent" anchor="left" open={open} classes={{
-        paper: classes.drawerPaper
-      }}>
+      <Drawer
+        className={classes.drawer}
+        varient="persistent"
+        anchor="left"
+        open={open}
+        classes={{
+          paper: classes.drawerPaper
+        }}
+      >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerOpen}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
         <List>
           {navList.map((item, i) => (
-            <ListItem button key={item.title} to={item.path} onClick={handleDrawerOpen}>
+            <ListItem
+              button
+              component={Link}
+              key={item.title}
+              to={item.path}
+              onClick={handleDrawerOpen}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.title} />
             </ListItem>
@@ -351,15 +393,16 @@ const useStyles = makeStyles(theme => ({
         </List>
         <Divider />
       </Drawer>
-      <main className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open
+        })}
+      >
         <div className={classes.drawerHeader}></div>
       </main>
-      <div>
-      </div>
+      <div></div>
     </div>
   );
-}
+};
 
-export default (NavBar);
+export default NavBar;
