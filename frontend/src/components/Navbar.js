@@ -6,12 +6,14 @@ import {
   AppBar,
   Toolbar,
   Button,
+  Backdrop,
   IconButton,
   Typography,
   InputBase,
   Badge,
   MenuItem,
   Menu,
+  Modal,
   Drawer,
   CssBaseline,
   ListItem,
@@ -20,6 +22,7 @@ import {
   useTheme,
   Divider,
   List,
+  Fade,
   withStyles
 } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -34,6 +37,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import WorkoutIcon from "@material-ui/icons/FitnessCenter";
 import ProgressIcon from "@material-ui/icons/Notes";
+import LoginModal from "./Login";
 
 const drawerWidth = 240;
 
@@ -148,6 +152,11 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   }
 }));
 
@@ -155,7 +164,7 @@ const NavBar = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [auth, setAuth] = useState(true);
@@ -186,8 +195,8 @@ const NavBar = props => {
   ];
 
   const handleModalOpen = () => {
-    setModalOpen(!modalOpen)
-  }
+    setModalOpen(!modalOpen);
+  };
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
@@ -274,7 +283,7 @@ const NavBar = props => {
 
   return (
     <div className={(classes.grow, classes.root)}>
-    <CssBaseline />
+      <CssBaseline />
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -352,7 +361,7 @@ const NavBar = props => {
           )}
           {!auth && (
             <div>
-              <Button color="inherit" component={Link} to='/login' onClick={handleAuth, handleModalOpen}>
+              <Button color="inherit" onClick={handleModalOpen}>
                 Login
               </Button>
               <Button color="inherit">Sign up</Button>
@@ -397,14 +406,20 @@ const NavBar = props => {
         </List>
         <Divider />
       </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open
-        })}
-      >
-        <div className={classes.drawerHeader}></div>
-      </main>
-      <div></div>
+        <Modal
+          className={classes.modal}
+          open={modalOpen}
+          onClose={handleModalOpen}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500
+          }}
+        >
+          <Fade in={modalOpen}>
+            <LoginModal styles={classes} />
+          </Fade>
+        </Modal>
     </div>
   );
 };
