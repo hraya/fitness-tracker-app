@@ -87,13 +87,3 @@ class LoginModal extends Component {
 }
 
 export default withStyles(styles)(LoginModal);
-
-
-// return (
-//     <div className={this.props.styles.paper}>
-//       <h2 id="transition-modal-title">Transition modal</h2>
-//       <p id="transition-modal-description">
-//         react-transition-group animates me.
-//       </p>
-//     </div>
-// );
