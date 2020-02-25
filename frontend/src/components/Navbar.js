@@ -155,6 +155,7 @@ const NavBar = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [auth, setAuth] = useState(true);
@@ -184,6 +185,9 @@ const NavBar = props => {
     }
   ];
 
+  const handleModalOpen = () => {
+    setModalOpen(!modalOpen)
+  }
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
@@ -348,7 +352,7 @@ const NavBar = props => {
           )}
           {!auth && (
             <div>
-              <Button color="inherit" onClick={handleAuth}>
+              <Button color="inherit" component={Link} to='/login' onClick={handleAuth, handleModalOpen}>
                 Login
               </Button>
               <Button color="inherit">Sign up</Button>
