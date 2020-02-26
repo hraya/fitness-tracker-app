@@ -197,6 +197,9 @@ const NavBar = props => {
   const handleModalOpen = () => {
     setModalOpen(!modalOpen);
   };
+  const handleDummyAuth = () => {
+    setAuth(true);
+  };
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
@@ -406,20 +409,21 @@ const NavBar = props => {
         </List>
         <Divider />
       </Drawer>
-        <Modal
-          className={classes.modal}
-          open={modalOpen}
-          onClose={handleModalOpen}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500
-          }}
-        >
-          <Fade in={modalOpen}>
-            <LoginModal styles={classes} />
-          </Fade>
-        </Modal>
+      <Modal
+        className={classes.modal}
+        open={modalOpen}
+        onClose={handleModalOpen}
+        closeAfterTransition
+        onBackdropClick={handleDummyAuth}
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500
+        }}
+      >
+        <Fade in={modalOpen}>
+          <LoginModal styles={classes} />
+        </Fade>
+      </Modal>
     </div>
   );
 };
