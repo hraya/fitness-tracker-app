@@ -4,6 +4,8 @@ This will be an application where you can track your progress healthier lifestyl
 #### Created leveraging the MERN Stack
 #### Coming soon mobile app IOS & Android
 
+## Features
+
 ## Creator
 
 | [**Humberto Raya Jr**](https://github.com/hraya) |
