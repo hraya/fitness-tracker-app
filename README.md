@@ -5,6 +5,10 @@ This will be an application where you can track your progress healthier lifestyl
 #### Coming soon mobile app IOS & Android
 
 ## Features
+* User should be able to Create an account
+* User should be able to login and sign out with ease
+*
+
 
 ## Creator
 
