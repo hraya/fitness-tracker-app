@@ -7,7 +7,10 @@ This will be an application where you can track your progress healthier lifestyl
 ## Features
 * User should be able to Create an account
 * User should be able to login and sign out with ease
-*
+* User should be able to schedule workouts any day of the week
+* User should be able to create custom workouts
+* Should be able to track their progress
+* Should be able to save workouts for future use
 
 
 ## Creator
