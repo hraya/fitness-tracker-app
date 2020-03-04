@@ -13,7 +13,7 @@ This will be an application where you can track your progress healthier lifestyl
 * Should be able to save workouts for future use
 
 
-## Creator
+## Creator/Developer
 
 | [**Humberto Raya Jr**](https://github.com/hraya) |
 | :----------: |
