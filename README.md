@@ -2,7 +2,11 @@
 This will be an application where you can track your progress healthier lifestyle. The app will be your _**Accountabili-Buddy**_.
 
 #### Created leveraging the MERN Stack
+⚠️ (backend under development may be in Java)
+
 #### Coming soon mobile app IOS & Android
+
+
 
 ## Features
 * User should be able to Create an account
