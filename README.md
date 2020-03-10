@@ -1,7 +1,7 @@
 # Accountabili-Buddy
 This will be an application where you can track your progress healthier lifestyle. The app will be your _**Accountabili-Buddy**_.
 
-#### Created leveraging the MERN Stack
+#### Created leveraging React, Material UI
 ⚠️ (backend under development may be in Java)
 
 #### Coming soon mobile app IOS & Android
