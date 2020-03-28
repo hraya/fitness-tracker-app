@@ -4,7 +4,7 @@ This will be an application where you can track your progress healthier lifestyl
 #### Created leveraging React, Material UI
 ⚠️ (backend under development may be in Java)
 
-#### Coming soon mobile app IOS & Android
+#### Coming soon mobile app IOS & Android leveraging React Native
 
 
 
